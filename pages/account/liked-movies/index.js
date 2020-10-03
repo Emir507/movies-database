@@ -3,7 +3,6 @@ import firebase from '../../../components/Firebase';
 import 'firebase/database';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import Link from 'next/link';
 import MoviesList from '../../../components/MoviesList';
 
 export default function LikedMovies() {
@@ -82,28 +81,7 @@ export default function LikedMovies() {
           grid-template-columns: repeat(3, 1fr);
         }
       `}</style>
-      <h1>My movies {firebaseMovies.length}</h1>
-      <h2>{currentUser.email}</h2>
-      <MoviesList movies={firebaseMovies} />
-      {/* <ul>
-        {firebaseMovies ? (
-          firebaseMovies.map(movie => (
-            <li key={movie.id}>
-              <Link href='/account/liked-movies/[id]' as={`/account/liked-movies/${movie.id}`}>
-                <a>
-                  <img src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`} alt="" />
-                </a>
-              </Link>
-            </li>
-          ))
-        ) : null}
-      </ul> */}
+      <MoviesList movies={firebaseMovies} header='My movies' />
     </MainLayout>
   )
 }
-// let api_key='1330d97b1fc8cf61cfc0d7240d769521';
-// let url = `https://api.themoviedb.org/3/movie/508664?api_key=1330d97b1fc8cf61cfc0d7240d769521&language=en-EN`
-// let url = `https://api.themoviedb.org/3/movie/${query.id}?api_key=${api_key}&language=en-EN`
-
-// при перезагрузке страницы или просто при переходе на неё она не видит данные которые я ей передаю
-// которые я загружаю из базы данных

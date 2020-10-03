@@ -3,8 +3,6 @@ import MainLayout from "../../components/MainLayout";
 import Link from 'next/link';
 import styles from '../../styles/posts.module.scss';
 import ProtectedRoute from '../../components/ProtectedRoute';
-// import firebase from '../../components/Firebase';
-// import { useRouter } from 'next/router';
 
 function Posts({ posts: serverPosts }) {
   const [posts, ] = useState(serverPosts);
@@ -14,15 +12,6 @@ function Posts({ posts: serverPosts }) {
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
-
-  // const router = useRouter();
-  // useEffect(() => {
-  //   firebase.auth().onAuthStateChanged(authUser => 
-  //     authUser
-  //       ? null
-  //       : router.push('/')
-  //   )
-  // }, [])
 
   const paginate = pageNumber => {
     setCurrentPage(pageNumber)
