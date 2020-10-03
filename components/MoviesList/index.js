@@ -4,9 +4,21 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import firebase from '../Firebase';
 import 'firebase/database';
-
 import { Grid } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles(theme => ({
+  item: {
+    position: 'inherit',
+    transition: '.4s',
+    '&:hover': {
+      transform: 'scale(1.03)'
+    }
+  }
+}))
+
 function MoviesList({ movies, header = 'Movies' }) {
+  const classes = useStyles();
   const [ likedMovies, setLikedMovies ] = useState();
   const router = useRouter();
 
@@ -85,35 +97,18 @@ function MoviesList({ movies, header = 'Movies' }) {
       <div>
         <h1>{ header }</h1>
         <style jsx>{`
-          img {
-            width: 100%;
-            height: 100%;
-            display: block;
-          }
-          li {
+          .item {
             position: inherit;
             transition: .4s;
           }
-          li:hover {
+          .item:hover {
             transform: scale(1.03);
           }
 
         `}</style>
-        {/* <ul className="d-flex flex-wrap m-auto justify-content-center justify-content-md-start">
+        <Grid container justify="center" spacing={1} >
           {movies.map(movie => (
-            <li key={movie.id} className='p-0 m-0 col-6 col-sm-5 col-md-4 col-lg-2 d-flex justify-content-center'>
-                {router.pathname.includes('/genres') ? (
-                  <GenresMovies router={router} movie={movie} addToFavorite={addToFavorite} />
-                ) : (
-                  <OtherMovies router={router} movie={movie} addToFavorite={addToFavorite} />
-                )}
-            </li>
-          ))}
-        </ul> */}
-
-        <Grid container justify='center' spacing={1} >
-          {movies.map(movie => (
-            <Grid item key={movie.id}>
+            <Grid item key={movie.id} className={classes.item}>
                 {router.pathname.includes('/genres') ? (
                   <GenresMovies router={router} movie={movie} addToFavorite={addToFavorite} />
                 ) : (
@@ -130,6 +125,11 @@ function MoviesList({ movies, header = 'Movies' }) {
 const GenresMovies = ({ router, movie, addToFavorite }) => (
   <>
     <style jsx>{`
+      img {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
       .add-to-favorite {
         top:0;
         left: 0;
@@ -151,11 +151,16 @@ const GenresMovies = ({ router, movie, addToFavorite }) => (
 const OtherMovies = ({ router, movie, addToFavorite }) => (
   <>
     <style jsx>{`
-        .add-to-favorite {
-          top:0;
-          left: 0;
-        }
-      `}</style>
+      img {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+      .add-to-favorite {
+        top:0;
+        left: 0;
+      }
+    `}</style>
     <div className=" position-relative">
       <Link href={`${router.route}/[id]`} as={`${router.asPath}/${movie.id}`}>
         <a>
