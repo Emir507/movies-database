@@ -1,0 +1,25 @@
+.nav {
+  height: 60px;
+  background-color: cyan;
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+}
+.ul {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s;
+  }
+}
+
+.active {
+  color: #000000;
+}
