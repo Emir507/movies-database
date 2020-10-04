@@ -7,7 +7,7 @@ function Account({ authUser }) {
     <>
       {authUser ? (
         <MainLayout>
-          <h1>{authUser.email}</h1>
+          <p>{authUser.email}</p>
           <Link href="/account/liked-movies">
             <a>my movies</a>
           </Link>

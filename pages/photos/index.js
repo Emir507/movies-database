@@ -1,6 +1,7 @@
 import MainLayout from "../../components/MainLayout";
 import Link from 'next/link';
 import ProtectedRoute from '../../components/ProtectedRoute';
+import { Grid } from '@material-ui/core'
 
 function Photos({ photos }) {
   return (
@@ -18,17 +19,17 @@ function Photos({ photos }) {
           display: block;
         }
       `}</style>
-      <div className="photos w-50 m-auto">
+      <Grid container justify='center' spacing={1}>
         {photos.map(photo => (
-          <div key={photo.id}>
+          <Grid item key={photo.id}>
             <Link href="/photo/[id]" as={`/photo/${photo.id}`}>
               <a>
                 <img src={photo.thumbnailUrl} alt={`photo__${photo.id}`}/>
               </a>
             </Link>
-          </div>
+          </Grid>
         ))}
-      </div>
+      </Grid>
     </MainLayout>
   )
 }

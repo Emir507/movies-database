@@ -108,7 +108,7 @@ function MoviesList({ movies, header = 'Movies' }) {
         `}</style>
         <Grid container justify="center" spacing={1} >
           {movies.map(movie => (
-            <Grid item key={movie.id} className={classes.item}>
+            <Grid item key={movie.id} xs={6} sm={4} md={3} lg={2} className={classes.item}>
                 {router.pathname.includes('/genres') ? (
                   <GenresMovies router={router} movie={movie} addToFavorite={addToFavorite} />
                 ) : (
